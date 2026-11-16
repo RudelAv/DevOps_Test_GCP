@@ -59,8 +59,9 @@ module "artifact_registry" {
 module "secret_manager" {
   source = "./modules/secret-manager"
 
-  project_id = var.project_id
-  secret_id  = var.database_password_secret_id
+  project_id  = var.project_id
+  secret_id   = var.database_password_secret_id
+  secret_data = var.database_password
 }
 
 module "cloud_run" {
