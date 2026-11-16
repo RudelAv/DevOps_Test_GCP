@@ -11,7 +11,7 @@ on:
 env:
     PROJECT_ID: the-program-470313-k9
     REGION: us-central1
-    REPOSITORY: php-app-repo
+    REPOSITORY: php-devops-repo
     SERVICE: php-devops-service
     IMAGE: php-app
 
