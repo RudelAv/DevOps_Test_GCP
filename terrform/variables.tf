@@ -62,5 +62,12 @@ variable "static_bucket_name" {
 variable "artifact_repository_name" {
   description = "Artifact Registry repository name"
   type        = string
-  default     = "php-app-repo"
+  default     = "php-devops-repo"
+}
+
+# Secret Manager variables
+variable "database_password_secret_id" {
+  description = "Secret Manager ID for the database password"
+  type        = string
+  default     = "php-devops-db-password"
 }

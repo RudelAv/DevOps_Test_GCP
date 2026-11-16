@@ -1,6 +1,6 @@
 # Cloud SQL MYSQL instance configuration
 
-resource "google_sql_database_instance" "main" {
+resource "google_sql_database_instance" "this" {
   name             = var.instance_name
   database_version = var.database_version
   region           = var.region
@@ -31,13 +31,13 @@ resource "google_sql_database_instance" "main" {
 
 resource "google_sql_database" "database" {
   name     = var.database_name
-  instance = google_sql_database_instance.main.name
+  instance = google_sql_database_instance.this.name
 }
 
 # Application database user
 
 resource "google_sql_user" "user" {
   name     = var.database_user
-  instance = google_sql_database_instance.main.name
+  instance = google_sql_database_instance.this.name
   password = var.database_password
 }

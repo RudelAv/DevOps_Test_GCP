@@ -56,3 +56,14 @@ output "artifact_registry_repository_id" {
   description = "Artifact Registry repository ID"
   value       = module.artifact_registry.repository_id
 }
+
+# Secret Manager configuration outputs
+output "database_password_secret_id" {
+  description = "Database password Secret Manager ID"
+  value       = module.secret_manager.secret_id
+}
+
+output "database_password_secret_name" {
+  description = "Full Secret Manager resource name"
+  value       = module.secret_manager.secret_name
+}

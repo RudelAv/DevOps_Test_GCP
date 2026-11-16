@@ -56,4 +56,9 @@ module "artifact_registry" {
   description     = "Artifact (Docker) Registry for PHP application"
 }
 
+module "secret_manager" {
+  source = "./modules/secret-manager"
 
+  project_id = var.project_id
+  secret_id  = var.database_password_secret_id
+}
