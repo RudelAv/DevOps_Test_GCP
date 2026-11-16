@@ -363,3 +363,7 @@ The current configuration is a DevOps deployment baseline. Several improvements 
 - Configure budgets and billing alerts.
 - Monitor Cloud Run, Cloud SQL, and Cloud Storage consumption.
 - Adjust resources to the application's actual needs.
+
+### Final Result
+
+![screenshot](result.png)
