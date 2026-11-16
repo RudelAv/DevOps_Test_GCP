@@ -15,7 +15,7 @@ variable "environment" {
   default     = "dev"
 }
 
-
+# cloud sql modules variales
 variable "sql_instance_name" {
   description = "Cloud SQL instance name"
   type        = string
@@ -50,4 +50,10 @@ variable "database_password" {
   description = "Application database password"
   type        = string
   sensitive   = true
+}
+
+# cloud storage variables
+variable "static_bucket_name" {
+  description = "Cloud Storage bucket for static application files"
+  type        = string
 }

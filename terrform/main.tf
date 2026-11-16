@@ -41,4 +41,11 @@ module "cloud_sql" {
   database_password = var.database_password
 }
 
+module "cloud_storage" {
+  source = "./modules/cloud-storage"
+
+  bucket_name = var.static_bucket_name
+  location    = var.region
+}
+
 

@@ -33,3 +33,15 @@ output "cloud_sql_public_ip" {
   description = "Cloud SQL public IP"
   value       = module.cloud_sql.public_ip_address
 }
+
+# cloud storage configuration outputs
+
+output "cloud_storage_bucket_name" {
+  description = "Static files bucket name"
+  value       = module.cloud_storage.bucket_name
+}
+
+output "cloud_storage_bucket_url" {
+  description = "Static files bucket URL"
+  value       = module.cloud_storage.bucket_url
+}
