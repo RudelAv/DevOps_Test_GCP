@@ -45,3 +45,14 @@ output "cloud_storage_bucket_url" {
   description = "Static files bucket URL"
   value       = module.cloud_storage.bucket_url
 }
+
+# Artifact Registry configuration outputs
+output "artifact_registry_repository_url" {
+  description = "Artifact Registry Docker repository URL"
+  value       = module.artifact_registry.repository_url
+}
+
+output "artifact_registry_repository_id" {
+  description = "Artifact Registry repository ID"
+  value       = module.artifact_registry.repository_id
+}

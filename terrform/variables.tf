@@ -57,3 +57,10 @@ variable "static_bucket_name" {
   description = "Cloud Storage bucket for static application files"
   type        = string
 }
+
+# Artifact Registry variables
+variable "artifact_repository_name" {
+  description = "Artifact Registry repository name"
+  type        = string
+  default     = "php-app-repo"
+}

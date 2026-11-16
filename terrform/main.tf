@@ -48,4 +48,12 @@ module "cloud_storage" {
   location    = var.region
 }
 
+module "artifact_registry" {
+  source = "./modules/artifact-registry"
+
+  repository_name = var.artifact_repository_name
+  location        = var.region
+  description     = "Artifact (Docker) Registry for PHP application"
+}
+
 
