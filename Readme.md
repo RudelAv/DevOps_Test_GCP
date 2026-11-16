@@ -173,7 +173,7 @@ The deployment service account must have the IAM permissions required to publish
 
 Using Workload Identity Federation avoids storing a permanent service account JSON key in GitHub.
 
-### 5.3 Triggering the Deployment
+### 4.3 Triggering the Deployment
 
 The workflow runs on a push to the `main` branch, as configured.
 
@@ -187,7 +187,7 @@ git push origin main
 
 Execution progress can be followed in the **Actions** tab of the GitHub repository.
 
-## 6. Accessing the Deployed Application
+## 5. Accessing the Deployed Application
 
 The deployed application can be accessed at the following link:
 ```
@@ -196,7 +196,7 @@ https://php-devops-service-tzd3u5b76q-uc.a.run.app/
 or by performing the following step:
 
 
-## 7. Bash Script: Retrieving the Public IP Address
+## 6. Bash Script: Retrieving the Public IP Address
 
 The project includes a Bash script that retrieves the IPv4 addresses associated with the Cloud Run service hostname.
 
@@ -288,31 +288,39 @@ roles/iam.serviceAccountUser
 
 on the Cloud Run runtime service account.
 
-### 8.4 Managing the Cloud SQL Connection Secret
+### 8.4 Cloud SQL Authentication Issue
 
-**Problem:**
+**Problem encountered:**
 
-The Cloud Run service returned an error when connecting to MySQL:
+The application initially displayed an error when connecting to MySQL:
 
 ```text
 SQLSTATE[HY000] [1045] Access denied for user 'php_devops_user'
 ```
 
-The logs confirmed that the connection did reach MySQL, but that the user's authentication was refused.
+The Cloud Run logs showed that the connection did reach the MySQL server, but that authentication was refused.
 
+**Solutions applied:**
 
-**Solutions:**
+- Added the `google_secret_manager_secret_version` resource to manage secret versions with Terraform.
+- Synchronized the Cloud SQL user's password with the one stored in Secret Manager.
+- Created a new version of the secret.
+- Updated the secret reference in the Cloud Run configuration to trigger a new revision.
 
-- Added the `google_secret_manager_secret_version` resource to manage the secret version with Terraform.
-- Synchronized the password declared in Terraform with the one configured for the Cloud SQL user.
-- Verified the creation of version 3 of the secret.
-- Attempted to force Cloud Run to explicitly use this version by changing the secret reference in its configuration.
+**Result:**
 
-**Status at the end of the test:**
+The database connection was ultimately established successfully.
+The application now displays:
 
-Despite these fixes, the `1045 Access denied` error persisted. The connection to Cloud SQL could therefore not be fully validated during the test.
+```text
+Database connection successful!
 
-This problem requires further investigation.
+Database : php_devops_application
+
+Connection : Cloud SQL / MySQL
+```
+
+Communication between the PHP application deployed on Cloud Run and the MySQL database hosted on Cloud SQL is therefore operational.
 
 
 ## 9. Possible Improvements for a Production Environment
