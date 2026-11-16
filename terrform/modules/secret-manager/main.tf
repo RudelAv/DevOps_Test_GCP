@@ -16,3 +16,9 @@ resource "google_secret_manager_secret" "password_database" {
 
   depends_on = [google_project_service.manager_secret]
 }
+
+# Store database password as a secret version
+resource "google_secret_manager_secret_version" "password" {
+  secret      = google_secret_manager_secret.password_database.id
+  secret_data = var.secret_data
+}
