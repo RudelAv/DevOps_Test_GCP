@@ -71,3 +71,22 @@ variable "database_password_secret_id" {
   type        = string
   default     = "php-devops-db-password"
 }
+
+# Cloud Run variables
+variable "cloud_run_service_name" {
+  description = "Cloud Run application service name"
+  type        = string
+  default     = "php-devops-service"
+}
+
+variable "container_image_tag" {
+  description = "Docker image tag to deploy"
+  type        = string
+  default     = "v1"
+}
+
+variable "cloud_run_max_instances" {
+  description = "Maximum number of Cloud Run instances"
+  type        = number
+  default     = 2
+}

@@ -67,3 +67,19 @@ output "database_password_secret_name" {
   description = "Full Secret Manager resource name"
   value       = module.secret_manager.secret_name
 }
+
+# Cloud Run configuration outputs
+output "cloud_run_service_name" {
+  description = "Cloud Run service name"
+  value       = module.cloud_run.service_name
+}
+
+output "cloud_run_service_uri" {
+  description = "Cloud Run HTTPS URL"
+  value       = module.cloud_run.service_uri
+}
+
+output "cloud_run_service_account" {
+  description = "Cloud Run service account email"
+  value       = module.cloud_run.service_account_email
+}

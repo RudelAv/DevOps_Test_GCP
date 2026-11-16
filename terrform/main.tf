@@ -62,3 +62,23 @@ module "secret_manager" {
   project_id = var.project_id
   secret_id  = var.database_password_secret_id
 }
+
+module "cloud_run" {
+  source = "./modules/cloud-run"
+
+  project_id   = var.project_id
+  region       = var.region
+  service_name = var.cloud_run_service_name
+
+  container_image = "${var.region}-docker.pkg.dev/${var.project_id}/${var.artifact_repository_name}/php-app:${var.container_image_tag}"
+
+  cloud_sql_connection_name = module.cloud_sql.connection_name
+  database_name             = module.cloud_sql.database_name
+  database_user             = var.database_user
+
+  database_password_secret_id = module.secret_manager.secret_id
+
+  static_bucket_name = module.cloud_storage.bucket_name
+
+  max_instance_count = var.cloud_run_max_instances
+}
